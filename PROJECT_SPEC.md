@@ -1,4 +1,4 @@
-# 9Router - Intelligent AI Research & Work Management Tool
+# TokenFlow - Intelligent AI Research & Work Management Tool
 
 **Version:** 1.0.0  
 **Status:** In Development  
@@ -10,7 +10,7 @@
 
 ## EXECUTIVE SUMMARY
 
-9Router is a professional-grade intelligent routing system designed to optimize research and work management by seamlessly integrating multiple AI providers. The system automatically selects the most cost-effective and appropriate AI provider for each task based on complexity, precision requirements, budget constraints, and project context.
+TokenFlow is a professional-grade intelligent routing system designed to optimize research and work management by seamlessly integrating multiple AI providers. The system automatically selects the most cost-effective and appropriate AI provider for each task based on complexity, precision requirements, budget constraints, and project context.
 
 **Core Value Proposition:**
 - Maximize research output and productivity
@@ -105,7 +105,7 @@
 ### Component Architecture
 
 ```
-9Router/
+TokenFlow/
 ├── Core Components/
 │   ├── Intelligent Router
 │   │   ├── Task Analyzer

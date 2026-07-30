@@ -11,7 +11,7 @@ class NineRouter {
     this.tokenManager = new TokenManager(20);
     this.projectManager = new ProjectManager();
     this.workTracker = new WorkTracker();
-    console.log('✅ 9Router initialized successfully');
+    console.log('✅ TokenFlow initialized successfully');
   }
 
   async processTask(taskDescription, projectId) {
