@@ -5,7 +5,7 @@ const TokenManager = require('./components/tokenManager');
 const ProjectManager = require('./components/projectManager');
 const WorkTracker = require('./components/workTracker');
 
-class NineRouter {
+class TokenFlow {
   constructor() {
     this.router = new IntelligentRouter();
     this.tokenManager = new TokenManager(20);
@@ -36,4 +36,4 @@ class NineRouter {
   }
 }
 
-module.exports = NineRouter;
+module.exports = TokenFlow;

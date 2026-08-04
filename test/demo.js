@@ -3,32 +3,32 @@
  * Tests all components working together
  */
 
-const NineRouter = require('../src/index.js');
+const TokenFlow = require('../src/index.js');
 
 async function runDemo() {
   console.log('\n🚀 TokenFlow Demo Started\n');
   
   // Initialize TokenFlow
-  const nineRouter = new NineRouter();
+  const tokenflow = new TokenFlow();
   
   console.log('✅ All components initialized successfully\n');
 
   // Test 1: Create Projects
   console.log('📋 TEST 1: Creating Projects...');
-  const proj1 = nineRouter.projectManager.createProject('TokenFlow Research', 'research', 20);
-  const proj2 = nineRouter.projectManager.createProject('API Integration', 'coding', 50);
+  const proj1 = tokenflow.projectManager.createProject('TokenFlow Research', 'research', 20);
+  const proj2 = tokenflow.projectManager.createProject('API Integration', 'coding', 50);
   console.log('✅ Projects created:', proj1.id, proj2.id);
   
   // Test 2: Get Projects
   console.log('\n📋 TEST 2: Retrieving Projects...');
-  const allProjects = nineRouter.projectManager.getAllProjects();
+  const allProjects = tokenflow.projectManager.getAllProjects();
   console.log('✅ Total projects:', allProjects.length);
 
   // Test 3: Token Tracking
   console.log('\n💰 TEST 3: Tracking Token Usage...');
-  nineRouter.tokenManager.trackUsage('claude', 1000, 500, 'task_001');
-  nineRouter.tokenManager.trackUsage('groq', 2000, 1000, 'task_002');
-  const report = nineRouter.tokenManager.getFullReport();
+  tokenflow.tokenManager.trackUsage('claude', 1000, 500, 'task_001');
+  tokenflow.tokenManager.trackUsage('groq', 2000, 1000, 'task_002');
+  const report = tokenflow.tokenManager.getFullReport();
   console.log('✅ Token report:');
   console.log('   Spent: $' + report.spent);
   console.log('   Remaining: $' + report.remaining);
@@ -36,9 +36,9 @@ async function runDemo() {
 
   // Test 4: Work Tracking
   console.log('\n📊 TEST 4: Tracking Work...');
-  nineRouter.workTracker.recordWork(proj1.id, 'claude', 1000, 500, 2500);
-  nineRouter.workTracker.recordWork(proj2.id, 'groq', 2000, 1000, 800);
-  const projectStats = nineRouter.workTracker.getProjectStats(proj1.id);
+  tokenflow.workTracker.recordWork(proj1.id, 'claude', 1000, 500, 2500);
+  tokenflow.workTracker.recordWork(proj2.id, 'groq', 2000, 1000, 800);
+  const projectStats = tokenflow.workTracker.getProjectStats(proj1.id);
   console.log('✅ Work tracked:');
   console.log('   Project:', projectStats.name);
   console.log('   Total works:', projectStats.totalWorks);
@@ -46,7 +46,7 @@ async function runDemo() {
 
   // Test 5: Router Stats
   console.log('\n🤖 TEST 5: Router Statistics...');
-  const routerStats = nineRouter.router.getStats();
+  const routerStats = tokenflow.router.getStats();
   console.log('✅ Router stats:');
   console.log('   Total decisions:', routerStats.totalDecisions);
   console.log('   Provider usage:', routerStats.providerUsage);
@@ -54,7 +54,7 @@ async function runDemo() {
   // Final Summary
   console.log('\n\n✨ DEMO SUMMARY ✨');
   console.log('================');
-  const finalStatus = nineRouter.getFullStatus();
+  const finalStatus = tokenflow.getFullStatus();
   console.log('Projects:', finalStatus.projects.length);
   console.log('Works:', finalStatus.works.length);
   console.log('Budget spent: $' + finalStatus.tokenManager.spent);
