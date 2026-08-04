@@ -16,9 +16,13 @@
     .card .value { font-size: 2em; font-weight: bold; color: #4CAF50; }
     .section { background: #2a2a2a; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
     .section h2 { margin-bottom: 15px; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; }
-    button { background: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+    input, select { background: #1a1a1a; color: #fff; border: 1px solid #3a3a3a; padding: 10px; border-radius: 4px; width: 100%; }
+    button { background: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px; }
     button:hover { background: #45a049; }
-    input { background: #1a1a1a; color: #fff; border: 1px solid #3a3a3a; padding: 8px; border-radius: 4px; margin: 5px; }
+    .success { color: #4CAF50; }
+    .error { color: #ff6b6b; }
   </style>
 </head>
 <body>
@@ -36,6 +40,29 @@
     </div>
 
     <div class="section">
+      <h2>➕ Create Project</h2>
+      <div class="form-group">
+        <label>Project Name</label>
+        <input type="text" id="projectName" placeholder="Enter project name">
+      </div>
+      <div class="form-group">
+        <label>Project Type</label>
+        <select id="projectType">
+          <option value="research">Research</option>
+          <option value="coding">Coding</option>
+          <option value="writing">Writing</option>
+          <option value="analysis">Analysis</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Budget ($)</label>
+        <input type="number" id="projectBudget" placeholder="20" value="20">
+      </div>
+      <button onclick="createProject()">Create Project</button>
+      <div id="projectMessage"></div>
+    </div>
+
+    <div class="section">
       <h2>📁 Projects</h2>
       <div id="projects"></div>
     </div>
@@ -46,7 +73,6 @@
       const status = await fetch('/api/status').then(r => r.json());
       const budget = await fetch('/api/budget').then(r => r.json());
       
-      // Status cards
       document.getElementById('status').innerHTML = `
         <div class="card">
           <h3>Projects</h3>
@@ -66,21 +92,42 @@
         </div>
       `;
       
-      // Budget details
       document.getElementById('budget').innerHTML = `
         <p>Spent: <strong>$${budget.spent.toFixed(4)}</strong></p>
         <p>Budget: <strong>$${budget.budget}</strong></p>
         <p>Remaining: <strong>$${budget.remaining.toFixed(4)}</strong></p>
       `;
       
-      // Projects
       document.getElementById('projects').innerHTML = `
-        <p>Total Projects: ${status.projects.length}</p>
-        ${status.projects.map(p => `<p>📌 ${p.name} (${p.type})</p>`).join('')}
+        <p><strong>Total Projects: ${status.projects.length}</strong></p>
+        ${status.projects.map(p => `<p>📌 ${p.name} (${p.type}) - Budget: $${p.budget}</p>`).join('')}
       `;
     }
-    
+
+    async function createProject() {
+      const name = document.getElementById('projectName').value;
+      const type = document.getElementById('projectType').value;
+      const budget = parseInt(document.getElementById('projectBudget').value);
+
+      if (!name) {
+        document.getElementById('projectMessage').innerHTML = '<p class="error">❌ Project name required</p>';
+        return;
+      }
+
+      const response = await fetch('/api/projects', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, type, budget })
+      });
+
+      const project = await response.json();
+      document.getElementById('projectMessage').innerHTML = `<p class="success">✅ Project created: ${project.name}</p>`;
+      document.getElementById('projectName').value = '';
+      loadDashboard();
+    }
+
     loadDashboard();
+    setInterval(loadDashboard, 5000);
   </script>
 </body>
 </html>
