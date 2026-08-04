@@ -1,9 +1,9 @@
 require('dotenv').config();
-
 const IntelligentRouter = require('./components/router');
 const TokenManager = require('./components/tokenManager');
 const ProjectManager = require('./components/projectManager');
 const WorkTracker = require('./components/workTracker');
+const FallbackSystem = require('./components/fallbackSystem');
 
 class TokenFlow {
   constructor() {
@@ -11,6 +11,7 @@ class TokenFlow {
     this.tokenManager = new TokenManager(20);
     this.projectManager = new ProjectManager();
     this.workTracker = new WorkTracker();
+    this.fallbackSystem = new FallbackSystem();
     console.log('✅ TokenFlow initialized successfully');
   }
 
