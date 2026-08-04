@@ -1,4 +1,4 @@
-# PROJECT: 9Router - Intelligent AI Research & Work Management Tool
+# PROJECT: TokenFlow - Intelligent AI Research & Work Management Tool
 
 ## OBJETIVO PRINCIPAL
 Crear una herramienta de investigación y trabajo que optimice el uso eficiente 
@@ -12,7 +12,7 @@ resultados mientras minimiza costos y consumo de tokens.
 ```
 Interfaz de Usuario
     ↓
-9ROUTER - INTELLIGENT ROUTER
+TokenFlow - INTELLIGENT ROUTER
 Motor de decisión: ¿Qué IA usar? ¿Cuándo? ¿Por qué?
     ├── Claude (Pagado, Prioridad)
     ├── Groq (Gratis)
