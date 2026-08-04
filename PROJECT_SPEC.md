@@ -4,7 +4,7 @@
 **Status:** In Development  
 **Last Updated:** July 29, 2026  
 **Author:** Hugo Alberto Lopez Ferrer  
-**Language:** English / Español
+**Language:** English
 
 ---
 
